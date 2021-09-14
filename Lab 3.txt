@@ -1,0 +1,90 @@
+Assembly language programs for sorting numbers, finding largest/smallest Numbers in a series 
+and for converting numbers 
+ 
+ 
+1.Write an ALP to convert Hex number into BCD number ? 
+ 
+mov a,#01bh 
+mov b,#064h 
+div ab 
+mov r0,a 
+mov a,b 
+mov b,#0ah 
+div ab 
+mov r1,a 
+mov r2,b 
+sjmp $ 
+end 
+ 
+ 
+The output is observed at R0,R1 and R2  
+ 
+ 
+ 
+ 
+2.Write an ALP to find the smallest/largest no? 
+mov r7,#05h 
+mov r0,#60h 
+mov a,@r0 
+dec r7 
+inc r0 
+up:mov r1,a 
+subb a,@r0 
+jc down 
+mov a,@r0 
+jmp down1 
+down:mov a,r1 
+down1 :inc r0 
+djnz r7,up 
+mov 70h,a 
+sjmp $ 
+end 
+ 
+Input Memory location:60h  
+  Smallest/Largest will be displayed at 70h  
+ 
+ 
+9 
+ 
+    
+3. Write an ALP to generate a fibanocci series upto n numbers 
+ 
+mov r7,#05h 
+mov 60h,#00h 
+mov 61h,#01h 
+mov r1,#60h 
+inc r1 
+up:mov a,@r1 
+dec r1 
+add a,@r1 
+inc r1 
+inc r12 
+mov @r1,a 
+djnz r7,up 
+sjmp $ 
+end 
+  Output will be displayed as fibanocci  series upto 5 numbers 
+ 
+4.Write an ALP to arrange a block of  N bytes of data in a location  using bubble sort technique? 
+ 
+org 0000h 
+mov 67h,#04h 
+dec 67h 
+up1:mov r7,67h 
+mov r0,#60h 
+up:mov a,@r0 
+inc r0 
+subb a,@r0 
+jc down 
+mov a,@r0 
+dec r0 
+mov 65h,@r0 
+mov @r0,a 
+inc r0 
+mov @r0,65h 
+down:djnz r7,up 
+djnz 67h, up1 
+sjmp $ 
+end 
+ 
+Input memory at 60h Output will be ascending/descending upon the logic of the program 
