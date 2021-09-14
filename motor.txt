@@ -1,0 +1,104 @@
+Write a C program to control the speed of the D.C.Motor with 80 and 20% duty cycle  
+ 
+     
+ 
+ 
+ 
+ 
+ 
+ 
+#include <reg51.h> 
+void delay(unsigned int); 
+sbit Mtr = P0^0; 
+sbit sw = P1^0; 
+ 
+void main () 
+{ 
+ Mtr = 0; 
+ sw = 1; 
+ TMOD=0x01; 
+ while(1) 
+ { 
+  if (sw == 1) 
+  {  
+   Mtr = 0; 
+   delay(20); 
+   Mtr = 1; 
+   delay(80); 
+  } 
+ else  
+ {  
+    Mtr = 0; 
+   delay(80); 
+   Mtr = 1; 
+27 
+ 
+   delay(20); 
+ } 
+ }  
+} 
+ 
+void delay(unsigned int ms) 
+{ 
+ unsigned int j; 
+ for (j=0; j<ms; j++) 
+ { 
+   TH0=0xFC;             
+      TL0=0x66; 
+   TR0 = 1;  
+   while (TF0 == 0);    
+      TR0 = 0;             
+      TF0 = 0; 
+     
+ }    
+} 
+ 
+Write a C program to control the speed of the D.C.Motor with 60 and 40% duty cycle  
+ 
+ 
+Write a C program to control the speed of the D.C.Motor with 80 and 20% duty cycle  
+#include <reg51.h> 
+void delay(unsigned int); 
+sbit Mtr = P0^0; 
+sbit sw = P1^0; 
+ 
+void main () 
+{ 
+ Mtr = 0; 
+ sw = 1; 
+ TMOD=0x01; 
+ while(1) 
+ { 
+  if (sw == 1) 
+  {  
+   Mtr = 0; 
+   delay(40); 
+   Mtr = 1; 
+   delay(60); 
+  } 
+ else  
+ {  
+    Mtr = 0; 
+28 
+ 
+   delay(60); 
+   Mtr = 1; 
+   delay(40); 
+ } 
+ }  
+} 
+ 
+void delay(unsigned int ms) 
+{ 
+ unsigned int j; 
+ for (j=0; j<ms; j++) 
+ { 
+   TH0=0xFC;             
+      TL0=0x66; 
+   TR0 = 1;  
+   while (TF0 == 0);    
+      TR0 = 0;             
+      TF0 = 0; 
+     
+ }    
+}
